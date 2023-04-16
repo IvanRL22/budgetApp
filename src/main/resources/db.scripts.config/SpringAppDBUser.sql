@@ -1,0 +1,2 @@
+CREATE USER 'SpringBootDBUser'@'localhost' IDENTIFIED BY 'SpringBootPassword';
+GRANT CREATE, ALTER, DROP, INSERT, UPDATE, INDEX, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'SpringBootDBUser'@'localhost' WITH GRANT OPTION;
