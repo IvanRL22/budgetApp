@@ -1,0 +1,19 @@
+# SpringBoot configuration
+server:
+  port: 8081
+  shutdown: graceful
+
+# DB configuration
+spring:
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/BudgetApp
+    username: SpringBootDBUser
+    password: SpringBootPassword
+    driver-class-name: com.mysql.cj.jdbc.Driver
