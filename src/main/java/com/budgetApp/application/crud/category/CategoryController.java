@@ -1,5 +1,8 @@
 package com.budgetApp.application.crud.category;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -8,33 +11,45 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/category")
+@RequiredArgsConstructor
+@Slf4j(topic = "crud")
 public class CategoryController {
 
     private final CategoryRepository repository;
 
-    public CategoryController(CategoryRepository repository) {
-        this.repository = repository;
-    }
-
     @GetMapping("/{id}")
     public Category read(@PathVariable Integer id) {
+        log.debug("Reading category with ID {}", id);
         // TODO Handle entity not found
-        return this.repository.findById(id).orElse(null);
+        Category read = this.repository.findById(id).orElse(null);
+        log.debug("Read category {}", read != null ? read : StringUtils.EMPTY);
+
+        return read;
     }
 
     @PostMapping()
     public Category create(@RequestBody Category newCategory) {
-        return this.repository.save(newCategory);
+        log.debug("Creating category {}", newCategory);
+        Category created = this.repository.save(newCategory);
+        log.debug("Created category {}", created);
+
+        return created;
     }
 
     @PutMapping()
     public Category update(@RequestBody Category category) {
-        return this.repository.save(category);
+        log.debug("Updating category with ID {}", category.getId());
+        Category updated = this.repository.save(category);
+        log.debug("Updated category successfully");
+
+        return updated;
     }
 
     @DeleteMapping()
     public void delete(@RequestBody Category category) {
+        log.debug("Deleting category {}", category);
         this.repository.delete(category);
+        log.debug("Deleted category successfully");
     }
 
 }

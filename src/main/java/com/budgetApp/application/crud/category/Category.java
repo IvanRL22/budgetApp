@@ -1,12 +1,18 @@
 package com.budgetApp.application.crud.category;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Table(name = "CATEGORIES")
+@Getter
+@Setter
+@ToString(onlyExplicitlyIncluded = true)
 public class Category {
 
     @Id
@@ -14,10 +20,11 @@ public class Category {
     @Column(name = "ID")
     private int id;
 
+    @ToString.Include
     @Column(name = "NAME", length = 30, nullable = false, unique = true)
     private String name;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "PARENT_CATEGORY")
     @JsonIgnoreProperties({"children"})
     private Category parent;
@@ -25,37 +32,5 @@ public class Category {
     @OneToMany(mappedBy = "parent")
     @JsonIgnoreProperties({"parent"})
     private Set<Category> children;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public Category getParent() {
-        return parent;
-    }
-
-    public void setParent(Category parent) {
-        this.parent = parent;
-    }
-
-    public Set<Category> getChildren() {
-        return children;
-    }
-
-    public void setChildren(Set<Category> children) {
-        this.children = children;
-    }
 
 }
