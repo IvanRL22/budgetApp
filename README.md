@@ -7,6 +7,15 @@ As it is a practice app, expect to see wierd configurations, documentation, etc.
 I use [Trello](https://trello.com/b/EQYUTlEr/budgetapp) for organization. This is just for task tracking purposes (and to practice keeping a clear and organized roadmap). 
 
 ## Libraries
-Uses [SpringBoot 2](https://spring.io/projects/spring-boot) as of 16/04/2023
+[MySQL](https://www.mysql.com/)
+
+[Java 17](https://docs.oracle.com/en/java/javase/17/docs/api/index.html)
+
+[SpringBoot 3](https://spring.io/projects/spring-boot)
+
+[Lombok](https://projectlombok.org/)
+
+
+
 
 
