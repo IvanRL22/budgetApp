@@ -1,5 +1,6 @@
 package com.budgetApp.crud.category;
 
+import com.budgetApp.business.interfaces.Identifiable;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
@@ -14,7 +15,7 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public abstract class AbstractCategory {
+public abstract class AbstractCategory implements Identifiable<Integer> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

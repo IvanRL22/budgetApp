@@ -1,5 +1,6 @@
 package com.budgetApp.crud.category;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,5 +17,6 @@ public final class Subcategory extends AbstractCategory {
 
     @ManyToOne(optional = false, cascade = {CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "PARENT_CATEGORY")
+    @JsonIgnoreProperties("children")
     private Category parent;
 }
