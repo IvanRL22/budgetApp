@@ -1,4 +1,4 @@
-package com.budgetApp.application.crud.category;
+package com.budgetApp.crud.category;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/category")
 @RequiredArgsConstructor
-@Slf4j(topic = "crud")
+@Slf4j
 public class CategoryController {
 
     private final CategoryRepository repository;
+
 
     @GetMapping("/{id}")
     public Category read(@PathVariable Integer id) {
@@ -51,5 +52,7 @@ public class CategoryController {
         this.repository.delete(category);
         log.debug("Deleted category successfully");
     }
+
+
 
 }

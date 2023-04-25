@@ -11,6 +11,10 @@ spring:
       ddl-auto: validate
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        check_nullability: true
+
 
   datasource:
     url: jdbc:mysql://localhost:3306/BudgetApp
@@ -20,14 +24,13 @@ spring:
 
 # Logging
 logging:
-  file:
-    name: src/main/resources/logs/crud.log
-
+#  file:
+#    name: src/main/resources/logs/crud.log
 #  pattern:
 #    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
   level:
     root: INFO
-    crud: DEBUG
-    com.budgetApp.application: DEBUG
+#    crud: DEBUG
+    com.budgetApp: DEBUG
 
 

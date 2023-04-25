@@ -1,4 +1,4 @@
-package com.budgetApp.application.crud.category;
+package com.budgetApp.crud.category;
 
 import org.springframework.data.repository.CrudRepository;
 
