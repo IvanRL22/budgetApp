@@ -6,6 +6,9 @@ As it is a practice app, expect to see wierd configurations, documentation, etc.
 ## Task tracking
 I use [Trello](https://trello.com/b/EQYUTlEr/budgetapp) for organization. This is just for task tracking purposes (and to practice keeping a clear and organized roadmap). 
 
+## Business logic explanation
+You can check the explanation of the entities and the business logic [here](BUSINESS.md)
+
 ## Libraries
 [MySQL](https://www.mysql.com/)
 
