@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
 @Slf4j
-public abstract class AbstractCRUDController<E extends Identifiable, ID, R extends CrudRepository<E, ID>> {
+public abstract class AbstractCRUDController<E extends Identifiable<ID>, ID, R extends CrudRepository<E, ID>> {
 
     private final R repository;
 
@@ -46,5 +46,11 @@ public abstract class AbstractCRUDController<E extends Identifiable, ID, R exten
         log.debug("Deleting {}", category);
         this.repository.delete(category);
         log.debug("Deleted successfully");
+    }
+
+    @GetMapping("/all")
+    public Iterable<E> getAll() {
+        log.debug("Getting all entities");
+        return this.repository.findAll();
     }
 }
