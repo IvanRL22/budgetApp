@@ -1,4 +1,4 @@
-package com.budgetApp.temporalPlace;
+package com.budgetApp.crud.monthlyBudget;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
