@@ -1,3 +1,2 @@
-CREATE USER 'SpringBootDBUser'@'localhost' IDENTIFIED BY 'SpringBootPassword';
--- This assumes the name of the DB is BudgetApp
-GRANT ALL PRIVILEGES ON BudgetApp.* TO 'SpringBootDBUser'@'localhost';
+CREATE USER 'budgetBE'@'localhost' IDENTIFIED BY 'budgetBEPsw';
+GRANT ALL PRIVILEGES ON budgetDB.* TO 'budgetBE'@'localhost';

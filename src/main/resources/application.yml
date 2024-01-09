@@ -17,9 +17,9 @@ spring:
 
 
   datasource:
-    url: jdbc:mysql://localhost:3306/BudgetApp
-    username: SpringBootDBUser
-    password: SpringBootPassword
+    url: jdbc:mysql://localhost:3306/budgetDB
+    username: budgetBE
+    password: budgetBEPsw
     driver-class-name: com.mysql.cj.jdbc.Driver
 
 # Logging
