@@ -26,12 +26,12 @@ public abstract class AbstractCRUDController<E extends Identifiable<ID>, ID, R e
 
     @PostMapping()
     public E create(@RequestBody E newEntity) {
-        log.debug("Creating category {}", newEntity);
+        log.debug("Creating {}", newEntity);
         if (newEntity.getId() != null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Creation requests may not contain an identifier");
         }
         E createdEntity = this.repository.save(newEntity);
-        log.debug("Created category {}", createdEntity);
+        log.debug("Created {}", createdEntity);
 
         return createdEntity;
     }
