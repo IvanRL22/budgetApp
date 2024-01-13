@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.Range;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity(name = "SPENDINGS")
@@ -27,8 +29,9 @@ public class Spending implements Identifiable<Long> {
     @JoinColumn(name = "MONTHLYBUDGET_ID")
     private MonthlyBudget monthlyBudget;
 
-    @Column(name = "AMOUNT")
-    private int amount;
+    @Range(min = 0)
+    @Column(name = "AMOUNT", precision = 8, scale = 2)
+    private BigDecimal amount;
 
     @Column(name = "PAYEE")
     @Length(max = 50)
@@ -37,4 +40,5 @@ public class Spending implements Identifiable<Long> {
     @Column(name = "SPENDING_DATE")
     @Temporal(TemporalType.DATE)
     private LocalDate date;
+
 }

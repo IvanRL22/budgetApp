@@ -3,12 +3,19 @@ package com.budgetApp.crud.monthlyBudget;
 import com.budgetApp.business.interfaces.Identifiable;
 import com.budgetApp.crud.budget.Budget;
 import com.budgetApp.crud.category.Subcategory;
+import com.budgetApp.crud.spending.Spending;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.validator.constraints.Range;
+
+import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "MONTHLYBUDGET")
@@ -23,8 +30,9 @@ public class MonthlyBudget implements Identifiable<Long> {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "BUDGET_ID")
+    @JsonIgnore
     private Budget budget;
 
     @Embedded
@@ -35,14 +43,25 @@ public class MonthlyBudget implements Identifiable<Long> {
     @JsonIgnoreProperties("parent")
     private Subcategory category;
 
-    @Column(name = "INITIAL_BALANCE")
-    private int initialBalance;
+    @Column(name = "INITIAL_BALANCE", precision = 8, scale = 2)
+    private BigDecimal initialBalance;
 
-    @Column(name = "AMOUNT")
-    private int amount;
+    @Range(min = 0)
+    @Column(name = "AMOUNT", precision = 8, scale = 2)
+    private BigDecimal amount;
 
-//    @OneToMany(mappedBy = "monthlyBudget", orphanRemoval = true)
-//    @ToString.Exclude
-//    @JsonIgnoreProperties("monthlyBudget")
-//    private Set<Spending> spendings;
+    @OneToMany(mappedBy = "monthlyBudget", orphanRemoval = true)
+    @ToString.Exclude
+    @JsonIgnore
+    private Set<Spending> spendings = new HashSet<>();
+
+    @JsonIgnore
+    public float getBalance() {
+        return amount.add(initialBalance).add(getTotalSpendings()).floatValue();
+    }
+    private BigDecimal getTotalSpendings() {
+        return spendings.stream()
+                .map(Spending::getAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::subtract);
+    }
 }
