@@ -13,7 +13,8 @@ import org.hibernate.validator.constraints.Range;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-@Entity(name = "SPENDINGS")
+@Entity
+@Table(name = "SPENDINGS")
 @NoArgsConstructor(force = true)
 @Getter
 @Setter

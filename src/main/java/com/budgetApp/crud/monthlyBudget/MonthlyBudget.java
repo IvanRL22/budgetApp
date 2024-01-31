@@ -1,7 +1,6 @@
 package com.budgetApp.crud.monthlyBudget;
 
 import com.budgetApp.business.interfaces.Identifiable;
-import com.budgetApp.crud.budget.Budget;
 import com.budgetApp.crud.category.Subcategory;
 import com.budgetApp.crud.spending.Spending;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -29,11 +28,6 @@ public class MonthlyBudget implements Identifiable<Long> {
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    @JoinColumn(name = "BUDGET_ID")
-    @JsonIgnore
-    private Budget budget;
 
     @Embedded
     private Month month;

@@ -6,8 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/subcategory")
-public class SubcategoryController extends AbstractCRUDController<Subcategory, Integer, SubcategoryRepository> {
-
+public class SubcategoryController extends AbstractCRUDController<Subcategory, Long, SubcategoryRepository> {
 
     public SubcategoryController(SubcategoryRepository repository) {
         super(repository);

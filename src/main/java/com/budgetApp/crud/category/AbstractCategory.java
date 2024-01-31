@@ -8,19 +8,20 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Entity(name = "CATEGORIES")
+@Entity
+@Table(name = "CATEGORIES")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name="TYPE", discriminatorType = DiscriminatorType.STRING)
 @Getter
 @Setter
 @NoArgsConstructor
 @ToString
-public abstract class AbstractCategory implements Identifiable<Integer> {
+public abstract class AbstractCategory implements Identifiable<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
-    private Integer id;
+    private Long id;
 
     @ToString.Include
     @NotBlank(message = "Category.name cannot be null")
