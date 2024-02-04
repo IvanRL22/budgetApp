@@ -16,7 +16,7 @@ import lombok.ToString;
 public final class Subcategory extends AbstractCategory {
 
     @ManyToOne(optional = false, cascade = {CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name = "PARENT_CATEGORY")
+    @JoinColumn(name = "PARENT_CATEGORY_ID")
     @JsonIgnoreProperties("children")
     private Category parent;
 }

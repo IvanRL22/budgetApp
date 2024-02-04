@@ -12,9 +12,11 @@ public interface MonthlyBudgetRepository extends CrudRepository<MonthlyBudget, L
             FROM Spending s
             JOIN s.monthlyBudget as mb
             JOIN mb.category as c
-            WHERE mb.month = :month
+            JOIN mb.month as m
+            WHERE m.year = :year
+            AND m.month = :month
             GROUP BY c.name
             """)
-    List<MonthlySpendingBO> findMonthlyBudget(Month month);
+    List<MonthlySpendingBO> findByMonth(Integer year, Integer month);
 
 }

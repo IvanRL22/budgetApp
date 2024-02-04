@@ -33,4 +33,6 @@ logging:
 #    crud: DEBUG
     com.budgetApp: DEBUG
 
-
+springdoc:
+  swagger-ui:
+    tagsSorter: alpha
