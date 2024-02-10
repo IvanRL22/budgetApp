@@ -13,6 +13,8 @@ It should be able to create and manage a budget, including:
 - As this is a personal project, for now there it is not expected to manage several users
 
 # Entities
+![img.png](model.png)
+
 ## [Category](src/main/java/com/budgetApp/crud/category/AbstractCategory.java)
 Represents a grouping of expenses  
 They are user-defined  
