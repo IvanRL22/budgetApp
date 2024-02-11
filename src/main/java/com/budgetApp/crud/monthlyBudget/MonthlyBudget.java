@@ -55,8 +55,8 @@ public class MonthlyBudget implements Identifiable<Long> {
     private Set<Spending> spendings = new HashSet<>();
 
     @JsonIgnore
-    public float getBalance() {
-        return amount.add(initialBalance).add(getTotalSpendings()).floatValue();
+    public BigDecimal getBalance() {
+        return amount.add(initialBalance).add(getTotalSpendings());
     }
     private BigDecimal getTotalSpendings() {
         return spendings.stream()

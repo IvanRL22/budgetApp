@@ -21,6 +21,13 @@ import java.time.LocalDate;
 @ToString
 public class Spending implements Identifiable<Long> {
 
+    public Spending(MonthlyBudget monthlyBudget, BigDecimal amount, String payee, LocalDate date) {
+        this.monthlyBudget = monthlyBudget;
+        this.amount = amount;
+        this.payee = payee;
+        this.date = date;
+    }
+
     @Id
     @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)

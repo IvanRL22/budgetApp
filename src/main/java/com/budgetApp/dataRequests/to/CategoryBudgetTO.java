@@ -5,21 +5,25 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CategoryBudgetTO {
+public class CategoryBudgetTO implements Comparable<CategoryBudgetTO>{
 
     private String category;
-    private float amount;
-    private float balance;
+    private BigDecimal amount;
+    private BigDecimal balance;
 
     public static CategoryBudgetTO from(MonthlyBudget monthlyBudget) {
-        CategoryBudgetTO category = new CategoryBudgetTO();
-        category.setCategory(monthlyBudget.getCategory().getName());
-        category.setAmount(monthlyBudget.getAmount().floatValue());
-        category.setBalance(monthlyBudget.getBalance());
+        return new CategoryBudgetTO(monthlyBudget.getCategory().getName(),
+                monthlyBudget.getAmount(),
+                monthlyBudget.getBalance());
+    }
 
-        return category;
+    @Override
+    public int compareTo(CategoryBudgetTO c) {
+        return this.amount.compareTo(c.getAmount());
     }
 }

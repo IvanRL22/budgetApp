@@ -1,6 +1,6 @@
 package com.budgetApp.dataRequests;
 
-import com.budgetApp.crud.category.SubcategoryRepository;
+import com.budgetApp.crud.category.CategoryRepository;
 import com.budgetApp.dataRequests.to.CategoryTO;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -17,14 +17,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class DataController {
 
-    private final SubcategoryRepository subcategoryRepository;
+    private final CategoryRepository categoryRepository;
 
 
     @GetMapping("/subcategories")
     public List<CategoryTO> getCategories() {
-        return StreamSupport.stream(this.subcategoryRepository.findAll().spliterator(), false)
-                .map(s -> new CategoryTO(s.getId(), s.getName()))
+        return StreamSupport.stream(this.categoryRepository.findAll().spliterator(), false)
+                .map(CategoryTO::from)
                 .toList();
     }
-
 }

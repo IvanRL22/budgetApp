@@ -1,5 +1,7 @@
 package com.budgetApp.crud.monthlyBudget;
 
+import com.budgetApp.crud.category.Subcategory;
+import com.budgetApp.crud.month.Month;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -17,6 +19,16 @@ public interface MonthlyBudgetRepository extends CrudRepository<MonthlyBudget, L
             AND m.month = :month
             GROUP BY c.name
             """)
-    List<MonthlySpendingBO> findByMonth(Integer year, Integer month);
+    List<MonthlySpendingBO> findAggregatedSpendingByMonth(Integer year, Integer month);
 
+    @Query("""
+            FROM MonthlyBudget mb
+            JOIN FETCH mb.category as sc
+            JOIN FETCH sc.parent as c
+            LEFT JOIN FETCH mb.spendings
+            WHERE mb.month = :month
+            """)
+    List<MonthlyBudget> findByMonth(Month month);
+
+    MonthlyBudget findByMonthAndCategory(Month month, Subcategory subcategory);
 }
