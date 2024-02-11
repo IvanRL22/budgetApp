@@ -14,6 +14,9 @@ spring:
     properties:
       hibernate:
         check_nullability: true
+  liquibase:
+    enabled: false
+    change-log: src/main/resources/db/config/liquibase-changelog.xml
 
 
   datasource:

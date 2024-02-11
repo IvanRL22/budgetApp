@@ -19,6 +19,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <liquibase.version>4.25.1</liquibase.version>
     </properties>
 
     <dependencies>
@@ -64,7 +65,31 @@
             <version>1.18.26</version>
             <scope>provided</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.liquibase</groupId>
+            <artifactId>liquibase-core</artifactId>
+            <version>${liquibase.version}</version>
+        </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>${liquibase.version}</version>
+
+                <configuration>
+                    <driver>com.mysql.cj.jdbc.Driver</driver>
+                    <url>jdbc:mysql://localhost:3306/budgetDB</url>
+                    <username>budgetBE</username>
+                    <password>budgetBEPsw</password>
+                    <changeLogFile>src/main/resources/db/config/liquibase-changelog.xml</changeLogFile>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
 
 </project>
